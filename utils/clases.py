@@ -1,22 +1,11 @@
 #CLASES
 
-class Test:
-    def __init__(self):
-        print("TEST OK")
-
-class Persona:
-    def __init__(self, nombre):
-        self.nombre = nombre
-
-    def saludo(self):
-        print("Hola ", self.nombre)
-
 class Libro:
     def __init__(self,titulo,autor,genero,año_publicacion):
         self.titulo = titulo
         self.autor = autor
         self.genero = genero
-        self.año_publiacion = año_publicacion
+        self.año_publicacion = año_publicacion
         self.disponible = True
     
     def prestar(self):
@@ -28,7 +17,7 @@ class Libro:
     
     def devolver(self):
         if not self.disponible:
-            self.disponible = False
+            self.disponible = True
             return True
         else:
             return False
@@ -50,6 +39,20 @@ class Biblioteca:
         self.lista_libros.append(libro)
     
     def listarLibros(self):
-        return lista_libros
+        return self.lista_libros
     
-    def prestar_por_titulo
+    def prestar_por_titulo(self,nombre):
+        if self.lista_libros.count(nombre):
+            indice = self.lista_libros.index(nombre)
+            self.lista_libros[indice].prestar()
+            return True
+        else:
+            return False
+            
+    def devolver_por_titulo(self,nombre):
+        if self.lista_libros.count(nombre):
+            indice = self.lista_libros.index(nombre)
+            self.lista_libros[indice].devolver()
+            return True
+        else:
+            return False
