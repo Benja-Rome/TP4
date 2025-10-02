@@ -1,5 +1,7 @@
 #CLASES
 
+from tkinter import messagebox
+
 class Libro:
     def __init__(self,titulo,autor,genero,año_publicacion):
         self.titulo = titulo
@@ -23,7 +25,7 @@ class Libro:
             return False
     
     def esAntiguo(self):
-        if self.año_publicacion > 20:
+        if self.año_publicacion < 2025-20:
             return True
         else:
             return False
@@ -42,12 +44,14 @@ class Biblioteca:
         return self.lista_libros
     
     def prestar_por_titulo(self,nombre):
-        if self.lista_libros.count(nombre):
-            indice = self.lista_libros.index(nombre)
-            self.lista_libros[indice].prestar()
-            return True
-        else:
-            return False
+        for elemento in self.lista_libros:
+            if elemento.mostrarInfo()[0] == nombre:
+                if elemento.prestar():
+                    return 1
+                else:
+                    return 2
+        return 3
+        
             
     def devolver_por_titulo(self,nombre):
         if self.lista_libros.count(nombre):
