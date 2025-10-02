@@ -57,3 +57,11 @@ while True:
             messagebox.showwarning(title='NO PRESTADO', message='Ese libro no fue prestado')
         else:
             messagebox.showerror(title='NO EXISTENTE', message='El ítem que intentó devolver no existe')
+    
+    elif opcion == '5':
+        
+        lista = biblioteca.listarLibros()
+        
+        for i in lista:
+            if i.esAntiguo():
+                print(i.mostrarInfo())
